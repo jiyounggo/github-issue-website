@@ -1,13 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useIssueState } from '../../context/IssueProvider';
 
 const IssueList = () => {
   const { data: issues } = useIssueState();
-  // console.info(issues);
+
   return (
     <>
-      {issues.map(i => (
-        <li key={i.id}>{i.number}</li>
+      {issues.map(issue => (
+        <li key={issue.id}>
+          <Link to={`/${issue.number}`}>{issue.title}</Link>
+        </li>
       ))}
     </>
   );
