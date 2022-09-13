@@ -5,6 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from './styles/theme';
 import { GlobalStyle } from './styles/global-styles';
 import App from './App';
+import { ApiProvider } from './context/Api';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -12,7 +13,9 @@ root.render(
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <BrowserRouter>
-        <App />
+        <ApiProvider>
+          <App />
+        </ApiProvider>
       </BrowserRouter>
     </ThemeProvider>
   </React.StrictMode>
