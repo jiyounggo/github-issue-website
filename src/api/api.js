@@ -8,8 +8,10 @@ const api = axios.create({
   },
 });
 
-const getIssues = async (owner, repo) => {
-  const res = await api.get(`${owner}${repo}/issues`);
+const getIssues = async (owner, repo, params = {}) => {
+  const res = await api.get(`${owner}${repo}/issues`, {
+    params: { ...params },
+  });
   return res.data;
 };
 
