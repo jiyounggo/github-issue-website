@@ -1,14 +1,16 @@
-const baseUrl = process.env.REACT_APP_SERVER_URL;
+import axios from 'axios';
 
-const get = async endpoint => {
-  const url = baseUrl + endpoint;
-  const res = await fetch(url);
-  if (!res.ok) {
-    throw new Error(`${res.status.toString()} Error 인한 요청 실패!`);
-  }
-  const result = await res.json();
+const api = axios.create({
+  baseURL: `${process.env.REACT_APP_SERVER_URL}`,
+  headers: {
+    Accept: 'application/vnd.github+json',
+    Authorization: `Bearer ${process.env.REACT_APP_GITHUB_TOKEN}`,
+  },
+});
 
-  return result;
+const getIssues = async (owner, repo) => {
+  const res = await api.get(`${owner}${repo}/issues`);
+  return res.data;
 };
 
-export { get };
+export { getIssues };
