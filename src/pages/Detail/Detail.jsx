@@ -1,13 +1,18 @@
-import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import { useApi } from '../../context/Api';
 import { Container } from './Detail.style';
-
-const API_URL = `${process.env.REACT_APP_SERVER_URL}`;
-const GH_TOKEN = `${process.env.REACT_APP_TOKEN}`;
-
-const api = axios.create;
+import IssueDetail from './IssueDetail/IssueDetail';
 
 const Detail = () => {
-  return <Container>hello</Container>;
+  const { id } = useParams();
+  const { IssueAPI } = useApi();
+
+  return (
+    <Container>
+      <h2>Hello</h2>
+      <IssueAPI id={id} renderSuccess={IssueDetail} />
+    </Container>
+  );
 };
 
 export default Detail;
