@@ -1,35 +1,21 @@
-import React, { createContext, useState, useEffect, useRef, useCallback } from 'react';
-import useFetch from '../common/hooks/useFetch';
+import React, { createContext, useContext } from 'react';
+import { Api, ApiWithInfiniteScroll } from '../api/IssueApi';
 
-export const UserContext = createContext(null);
+const UserContext = createContext(null);
 
-function UserList(props) {
-  const [page, setPage] = useState(1);
-  const { isLoaded, error, list } = useFetch(page);
-  const loader = useRef(null);
+export const useUser = () => useContext(UserContext);
 
-  const handleObserver = useCallback(entries => {
-    const target = entries[0];
-    if (target.isIntersecting) {
-      setPage(prev => prev + 1);
-    }
-  }, []);
-
-  useEffect(() => {
-    const option = {
-      root: null,
-      rootMargin: '20px',
-      threshold: 0,
-    };
-    const observer = new IntersectionObserver(handleObserver, option);
-    if (loader.current) observer.observe(loader.current);
-  }, [handleObserver]);
-
-  return (
-    <UserContext.Provider value={{ isLoaded, error, list, loader }}>
-      {props.children}
-    </UserContext.Provider>
+export const UserList = ({ children }) => {
+  const IssuesAPI = ({ params = {}, renderSuccess }) => {
+    return (
+      <>
+        <ApiWithInfiniteScroll url={`/issues`} params={params} renderSuccess={renderSuccess} />
+      </>
+    );
+  };
+  const IssueAPI = ({ id, params = {}, renderSuccess }) => (
+    <Api url={`/issues/${id}`} params={params} renderSuccess={renderSuccess} />
   );
-}
 
-export default UserList;
+  return <UserContext.Provider value={{ IssuesAPI, IssueAPI }}>{children}</UserContext.Provider>;
+};
