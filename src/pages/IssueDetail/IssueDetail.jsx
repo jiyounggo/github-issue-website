@@ -1,12 +1,9 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-// import Showdown from 'showdown';
 import { convertDate } from '../../common/utils/convertDate';
 import {
   Avatar,
   Container,
-  Header,
-  Title,
   TopSection,
   ContentDiv,
   FirstDiv,
@@ -16,11 +13,11 @@ import {
 import ReactMarkdown from 'react-markdown';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
-import { useUser } from '../../context/UserList';
+import { useAPIContext } from '../../context/APIContext';
 
 const IssueDetail = () => {
   const { number } = useParams();
-  const { IssueAPI } = useUser();
+  const { IssueAPI } = useAPIContext();
 
   // const converter = new Showdown.Converter();
   // const text = `${issueData?.body}`;
@@ -72,9 +69,9 @@ const IssueDetail = () => {
 
   return (
     <Container>
-      <Header>
+      {/* <Header>
         s<Title>Angular / Angular-cli</Title>
-      </Header>
+      </Header> */}
       <IssueAPI id={number} renderSuccess={renderSuccess} />
     </Container>
   );
