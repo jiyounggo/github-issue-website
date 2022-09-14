@@ -9,14 +9,14 @@ import IssueProvider from './context/IssueProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <IssueProvider>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </ThemeProvider>
-    </IssueProvider>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <IssueProvider>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ThemeProvider>
+  </IssueProvider>
+  // </React.StrictMode>
 );

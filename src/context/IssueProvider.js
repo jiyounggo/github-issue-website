@@ -1,7 +1,5 @@
 import React, { useReducer, useMemo, useEffect, createContext, useContext } from 'react';
 import { getIssues } from '../api/api';
-// import IssueDetail from '../pages/IssueDetail/issueDetail';
-// import { ListContext } from './ListContext';
 
 function reducer(state, action) {
   switch (action.type) {
@@ -49,6 +47,7 @@ const IssueProvider = ({ children }) => {
 
   useEffect(() => {
     fetchUsers();
+    console.info('IssueProvider!!');
   }, []);
 
   const { loading, data, error } = state;
