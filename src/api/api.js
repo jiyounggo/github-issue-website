@@ -17,4 +17,9 @@ const getListByIssues = async (state, sort, page) => {
   return response;
 };
 
-export { getListByIssues };
+const getIssue = async id => {
+  const response = await api.get(`issues/${id}`);
+  return response;
+};
+
+export { getListByIssues, getIssue };
