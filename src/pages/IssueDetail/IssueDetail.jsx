@@ -15,8 +15,8 @@ import {
   ThirdDiv,
 } from './IssueDetail.style';
 import ReactMarkdown from 'react-markdown';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+// import SyntaxHighlighter from 'react-syntax-highlighter';
+// import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 const IssueDetail = () => {
   const { number } = useParams();
@@ -36,7 +36,6 @@ const IssueDetail = () => {
   // const text = `${issueData?.body}`;
   // const html = converter.makeHtml(text).toString();
 
-  // 이슈번호, 이슈제목, 작성자, 작성일, 코멘트 수, 작성자 프로필 이미지, 본문
   return (
     <Container>
       <Header>
@@ -63,22 +62,25 @@ const IssueDetail = () => {
         </ContentDiv>
       </TopSection>
       {/* <section dangerouslySetInnerHTML={{ __html: html }}></section> */}
-      <ReactMarkdown
-        children={issueData?.body}
-        components={{
-          code: Component,
-        }}
-      />
+      <ReactMarkdown children={issueData?.body} />
     </Container>
   );
 };
 
 export default IssueDetail;
 
-const Component = ({ value, language }) => {
-  return (
-    <SyntaxHighlighter language={language} style={docco}>
-      {value}
-    </SyntaxHighlighter>
-  );
-};
+// const Component = ({ value }) => {
+//   return (
+//     <SyntaxHighlighter language="javascript" style={docco}>
+//       {value ?? ''}
+//     </SyntaxHighlighter>
+//   );
+// };
+
+// function CodeBlock(children: { value: React.ReactNode }) {
+//   return (
+//     <Pre>
+//       <code>{children.value}</code>
+//     </Pre>
+//   );
+// }
