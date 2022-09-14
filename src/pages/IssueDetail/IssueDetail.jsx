@@ -1,22 +1,10 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-// import Showdown from 'showdown';
-import { convertDate } from '../../common/utils/convertDate';
-import {
-  Avatar,
-  Container,
-  Header,
-  Title,
-  TopSection,
-  ContentDiv,
-  FirstDiv,
-  SecondDiv,
-  ThirdDiv,
-} from './IssueDetail.style';
-import ReactMarkdown from 'react-markdown';
+import { Container, Header, Title } from './IssueDetail.style';
 // import SyntaxHighlighter from 'react-syntax-highlighter';
 // import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import { useUser } from '../../context/UserList';
+import IssueContent from './IssueContent';
 
 const IssueDetail = () => {
   const { number } = useParams();
@@ -26,49 +14,12 @@ const IssueDetail = () => {
   // const text = `${issueData?.body}`;
   // const html = converter.makeHtml(text).toString();
 
-  // TODO 컴포넌트로 분리 예정
-  const renderSuccess = ({
-    data: {
-      number,
-      title,
-      body,
-      user: { login, avatar_url },
-      comments,
-      created_at,
-    },
-  }) => (
-    <>
-      <TopSection>
-        <Avatar src={avatar_url} alt="user_avatar" />
-        <ContentDiv>
-          <FirstDiv>
-            <div>
-              # {number}
-              <span style={{ paddingRight: '10px' }}></span>
-            </div>
-            <div style={{ fontWeight: '600' }}> {title}</div>
-          </FirstDiv>
-          <SecondDiv>코멘트: {comments}</SecondDiv>
-          <ThirdDiv>
-            <div>
-              작성자: {login}
-              <span style={{ paddingRight: '10px' }}></span>
-            </div>
-            <div>작성일: {convertDate(created_at)}</div>
-          </ThirdDiv>
-        </ContentDiv>
-      </TopSection>
-      {/* <section dangerouslySetInnerHTML={{ __html: html }}></section> */}
-      <ReactMarkdown children={body} />
-    </>
-  );
-
   return (
     <Container>
       <Header>
         <Title>Angular / Angular-cli</Title>
       </Header>
-      <IssueAPI id={number} renderSuccess={renderSuccess} />
+      <IssueAPI id={number} renderSuccess={IssueContent} />
     </Container>
   );
 };
