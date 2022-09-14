@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import axios from 'axios';
+import { getListByIssues } from '../../api/api';
 
 export default function useFetch(page) {
   const [isLoaded, setIsLoad] = useState(true);
@@ -10,14 +10,7 @@ export default function useFetch(page) {
     try {
       setIsLoad(true);
       setError(false);
-      const res = await axios({
-        method: 'GET',
-        url: `${process.env.REACT_APP_SERVER_URL}&page=${page}`,
-        headers: {
-          Accept: 'application / vnd.github + json',
-          Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-        },
-      });
+      const res = await getListByIssues('open', 'comments', `${page}`);
       setList(prev => [...prev, ...res.data]);
       setIsLoad(false);
     } catch (err) {
