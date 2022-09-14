@@ -18,7 +18,7 @@ function Main() {
           </ul>
         ))}
       {load ? <div>로딩중</div> : ''}
-      <li className="" ref={obsRef}></li> // 옵저버
+      <li ref={obsRef}></li> // 옵저버
     </Container>
   );
 }
