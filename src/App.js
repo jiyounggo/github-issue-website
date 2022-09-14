@@ -3,7 +3,7 @@ import { ROUTE } from './common/utils/constant';
 import IssueDetail from './pages/IssueDetail/IssueDetail';
 // import IssueList from './pages/IssueList/IssueList';
 import NotFound from './pages/NotFound/NotFound';
-import UserList from './context/UserList';
+import { UserList } from './context/UserList';
 import Main from './pages/Main/Main';
 
 function App() {
