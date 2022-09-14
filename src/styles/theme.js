@@ -61,7 +61,7 @@ const theme = {
   device: {
     pc: '(min-width: 1100px)',
     tablet: '(min-width: 768px)',
-    mobile: '(min-width: 674px)',
+    mobile: '(max-width: 674px)',
   },
   common,
   fontSizes,
