@@ -10,3 +10,9 @@ export const Container = styled.div`
   background-color: cadetblue;
   margin: 0 auto;
 `;
+
+export const AdImg = styled.img`
+  width: 150px;
+  height: 150px;
+  margin-bottom: 5rem;
+`;
