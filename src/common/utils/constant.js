@@ -5,7 +5,7 @@ export const ROUTE = {
 
 export const REPOSITORY = {
   ANGULAR: {
-    owner: '/angular',
-    repo: '/angular-cli',
+    OWNER: '/angular',
+    REPO: '/angular-cli',
   },
 };
