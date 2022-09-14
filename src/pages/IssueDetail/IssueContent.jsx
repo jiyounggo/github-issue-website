@@ -26,7 +26,6 @@ const IssueContent = ({ data }) => {
           </ThirdDiv>
         </ContentDiv>
       </TopSection>
-      {/* <section dangerouslySetInnerHTML={{ __html: html }}></section> */}
       <ReactMarkdown children={data.body} />
     </>
   );

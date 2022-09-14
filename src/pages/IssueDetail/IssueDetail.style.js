@@ -19,11 +19,9 @@ export const Title = styled.h1`
 `;
 
 export const TopSection = styled.section`
-  /* border: 2px solid blue; */
   display: flex;
   justify-content: center;
   align-items: center;
-  /* padding: 1rem; */
   margin-bottom: 3rem;
 `;
 
@@ -31,7 +29,6 @@ export const Avatar = styled.img`
   max-width: 100px;
   height: 100px;
   margin-right: 2rem;
-  /* width: 20%; */
 `;
 
 export const ContentDiv = styled.div`
@@ -50,7 +47,6 @@ export const ContentDiv = styled.div`
 `;
 
 export const FirstDiv = styled.div`
-  /* border: 2px solid green; */
   display: flex;
   justify-content: flex-start;
   @media ${props => props.theme.device.mobile} {
@@ -61,7 +57,6 @@ export const FirstDiv = styled.div`
 `;
 
 export const SecondDiv = styled.div`
-  /* border: 2px solid tomato; */
   display: flex;
   justify-content: flex-end;
   @media ${props => props.theme.device.mobile} {
@@ -72,14 +67,12 @@ export const SecondDiv = styled.div`
 `;
 
 export const ThirdDiv = styled.div`
-  /* border: 2px solid purple; */
   display: flex;
   justify-content: flex-start;
   @media ${props => props.theme.device.mobile} {
     & {
       flex-direction: column;
       margin-bottom: 0.1rem;
-      /* background-color: yellow; */
     }
   }
 `;
