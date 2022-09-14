@@ -1,4 +1,5 @@
 import React, { createContext, useContext } from 'react';
+import { getIssue, getListByIssues } from '../api/api';
 import { Api, ApiWithInfiniteScroll } from '../api/IssueApi';
 
 const UserContext = createContext(null);
@@ -6,15 +7,16 @@ const UserContext = createContext(null);
 export const useUser = () => useContext(UserContext);
 
 export const UserList = ({ children }) => {
-  const IssuesAPI = ({ params = {}, renderSuccess }) => {
-    return (
-      <>
-        <ApiWithInfiniteScroll url={`/issues`} params={params} renderSuccess={renderSuccess} />
-      </>
-    );
-  };
-  const IssueAPI = ({ id, params = {}, renderSuccess }) => (
-    <Api url={`/issues/${id}`} params={params} renderSuccess={renderSuccess} />
+  const IssuesAPI = ({ renderSuccess }) => (
+    <>
+      <ApiWithInfiniteScroll
+        getList={page => getListByIssues('open', 'comments', page)}
+        renderSuccess={renderSuccess}
+      />
+    </>
+  );
+  const IssueAPI = ({ id, renderSuccess }) => (
+    <Api getData={() => getIssue(id)} renderSuccess={renderSuccess} />
   );
 
   return <UserContext.Provider value={{ IssuesAPI, IssueAPI }}>{children}</UserContext.Provider>;

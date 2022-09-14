@@ -1,18 +1,15 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { useFetch_v2 } from '../common/hooks/useFetch';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import useFetch from '../common/hooks/useFetch';
 
 // TODO changseok loadingFallback과 renderError에 대한 컴포넌트 구현이 완료되면 수정 예정
 export const Api = ({
-  url,
-  params,
+  getData,
   renderSuccess,
   loadingFallback = <p>loading...</p>,
   renderError = error => <p>Error!</p>,
 }) => {
-  const { isLoaded, error, data } = useFetch_v2({
-    url,
-    params: useMemo(() => params, [params]),
-  });
+  const api = useCallback(() => getData(), []);
+  const { isLoaded, error, data } = useFetch(api);
 
   if (isLoaded) return loadingFallback;
   if (error) return renderError(error);
@@ -21,17 +18,14 @@ export const Api = ({
 
 // TODO changseok loadingFallback과 renderError에 대한 컴포넌트 구현이 완료되면 수정 예정
 export const ApiWithInfiniteScroll = ({
-  url,
-  params,
+  getList,
   renderSuccess,
   loadingFallback = <p>loading...</p>,
   renderError = error => <p>Error!</p>,
 }) => {
   const [page, setPage] = useState(1);
-  const { isLoaded, error, data } = useFetch_v2({
-    url,
-    params: useMemo(() => ({ sort: 'comments', page, ...params }), [page, params]),
-  });
+  const api = useCallback(() => getList(page), [page]);
+  const { isLoaded, error, data } = useFetch(api);
   const [issues, setIssuses] = useState([]);
   const loader = useRef(null);
 
