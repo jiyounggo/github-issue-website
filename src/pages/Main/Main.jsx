@@ -1,16 +1,13 @@
 import React from 'react';
-import { useUser } from '../../context/UserList';
+import { useAPIContext } from '../../context/APIContext';
 import Issues from './Issues/Issues';
-import { Container, Header, MainContainer, Title } from './Main.style';
+import { Container, MainContainer } from './Main.style';
 
 function Main() {
-  const { IssuesAPI } = useUser();
+  const { IssuesAPI } = useAPIContext();
 
   return (
     <Container>
-      <Header>
-        <Title>Angular / Angular-cli</Title>
-      </Header>
       <MainContainer>
         <IssuesAPI renderSuccess={Issues} />
       </MainContainer>
