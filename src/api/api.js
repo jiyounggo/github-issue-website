@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 const API_URL = `${process.env.REACT_APP_API_URL}`;
 const OWNER = `${process.env.REACT_APP_OWNER}`;
@@ -11,7 +11,7 @@ const api = axios.create({
   headers: { Accept: 'application/vnd.github+json', Authorization: `Bearer ${GH_TOKEN}` },
 });
 
-export const useAxios = ({ method = 'get', url, params }) => {
+export const useAxios = ({ method = 'get', url, params = {} }) => {
   const [data, setData] = useState();
   const [error, setError] = useState();
   const [loading, setLoading] = useState(true);
@@ -30,12 +30,12 @@ export const useAxios = ({ method = 'get', url, params }) => {
       .catch(e => {
         setError(e);
       });
-  }, [url]);
+  }, [method, url, params]);
 
   return { data, error, loading };
 };
 
-export const API = ({
+export const Api = ({
   url,
   params,
   renderSuccess,
@@ -47,4 +47,45 @@ export const API = ({
   if (loading) return loadingFallback;
   if (error) return renderError(error);
   if (data) return renderSuccess({ data });
+};
+
+const PER_PAGE = 30;
+export const ApiWithInfiniteScroll = ({
+  url,
+  params,
+  renderSuccess,
+  loadingFallback = <p>loading...</p>,
+  renderError = error => <pre>{JSON.stringify(error)}</pre>,
+}) => {
+  const [page, setPage] = useState(1);
+  const [issues, setIssues] = useState([]);
+  const { data, error, loading } = useAxios({
+    url,
+    params: useMemo(() => ({ ...params, page }), [page]),
+  });
+  const observerRef = useRef();
+  const observer = node => {
+    if (loading) return;
+    if (observerRef.current) observerRef.current.disconnect();
+
+    observerRef.current = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !loading && data?.length === PER_PAGE) setPage(page => page + 1);
+    });
+
+    node && observerRef.current.observe(node);
+  };
+
+  useEffect(() => {
+    if (loading || !data) return;
+    setIssues(prev => [...prev, ...data]);
+  }, [data]);
+
+  return (
+    <>
+      {issues.length > 0 && renderSuccess({ data: issues })}
+      <div ref={observer} />
+      {loading && loadingFallback}
+      {error && renderError}
+    </>
+  );
 };

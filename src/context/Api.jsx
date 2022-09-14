@@ -1,13 +1,21 @@
 import { createContext, useContext } from 'react';
-import { API } from '../api/api';
+import { Api, ApiWithInfiniteScroll } from '../api/api';
 
 const ApiContext = createContext();
 
-const IssuesAPI = ({ renderSuccess }) => (
-  <API url={`/issues`} params={{ sort: 'comments' }} renderSuccess={renderSuccess} />
-);
+const IssuesAPI = ({ renderSuccess }) => {
+  return (
+    <>
+      <ApiWithInfiniteScroll
+        url={`/issues`}
+        params={{ sort: 'comments' }}
+        renderSuccess={renderSuccess}
+      />
+    </>
+  );
+};
 const IssueAPI = ({ id, renderSuccess }) => (
-  <API url={`/issues/${id}`} renderSuccess={renderSuccess} />
+  <Api url={`/issues/${id}`} renderSuccess={renderSuccess} />
 );
 
 export const useApi = () => useContext(ApiContext);
