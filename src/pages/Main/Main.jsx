@@ -4,12 +4,22 @@ import MainContext from '../../context/User';
 
 function Main() {
   const { load, issuesList, obsRef } = useContext(MainContext);
-  console.info(issuesList);
+
   return (
     <Container>
       {issuesList &&
-        issuesList.map((user, index) => (
+        issuesList.map((user, idx) => (
           <ul key={user.id}>
+            {idx === 5 && (
+              <a href="https://thingsflow.com/ko/home">
+                <img
+                  style={{
+                    width: '100px',
+                  }}
+                  src={'/이미지.png'}
+                />
+              </a>
+            )}
             <li> #{user.number}</li>
             <li>{user.title}</li>
             <li>{user.comments}</li>
@@ -17,8 +27,9 @@ function Main() {
             <li>{user.user.login}</li>
           </ul>
         ))}
-      {load ? <div>로딩중</div> : ''}
-      <li ref={obsRef}></li> // 옵저버
+      {load && <div>로딩중</div>}
+      <li ref={obsRef}></li>
+      {/* // 옵저버 */}
     </Container>
   );
 }
