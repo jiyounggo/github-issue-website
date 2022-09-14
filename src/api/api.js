@@ -1,26 +1,25 @@
 import axios from 'axios';
 
+const API_URL = `${process.env.REACT_APP_API_URL}`;
+const OWNER = `${process.env.REACT_APP_OWNER}`;
+const REPO = `${process.env.REACT_APP_REPO}`;
+const GH_TOKEN = `${process.env.REACT_APP_TOKEN}`;
+
 const api = axios.create({
-  baseURL: `${process.env.REACT_APP_BASE_URL}`,
-  headers: {
-    Authorization: `token ${process.env.REACT_APP_TOKEN}`,
-  },
+  baseURL: `${API_URL}/${OWNER}/${REPO}`,
+  headers: { Accept: 'application/vnd.github+json', Authorization: `Bearer ${GH_TOKEN}` },
 });
 
-const getIssues = async () => {
-  const response = await api.get(``, {
-    params: {
-      state: 'open',
-      sort: 'comments',
-    },
+const getListByIssues = async (state, sort, page) => {
+  const response = await api.get(`issues`, {
+    params: { state: state, sort: sort, page: page },
   });
-  return response.data;
+  return response;
 };
 
-const getIssue = async issueNumber => {
-  const response = await api.get(`/${issueNumber}`);
-
-  return response.data;
+const getIssue = async id => {
+  const response = await api.get(`issues/${id}`);
+  return response;
 };
 
-export { getIssues, getIssue };
+export { getListByIssues, getIssue };

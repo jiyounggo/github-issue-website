@@ -1,33 +1,25 @@
 import { useState, useEffect, useCallback } from 'react';
-import axios from 'axios';
 
-export default function useFetch(page) {
+export default function useFetch(api) {
   const [isLoaded, setIsLoad] = useState(true);
   const [error, setError] = useState(false);
-  const [list, setList] = useState([]);
+  const [data, setData] = useState();
 
   const sendQuery = useCallback(async () => {
     try {
       setIsLoad(true);
       setError(false);
-      const res = await axios({
-        method: 'GET',
-        url: `${process.env.REACT_APP_SERVER_URL}&page=${page}`,
-        headers: {
-          Accept: 'application / vnd.github + json',
-          Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
-        },
-      });
-      setList(prev => [...prev, ...res.data]);
+      const res = await api();
+      setData(res.data);
       setIsLoad(false);
     } catch (err) {
       setError(err);
     }
-  }, [page]);
+  }, [api]);
 
   useEffect(() => {
     sendQuery();
-  }, [sendQuery, page]);
+  }, [sendQuery]);
 
-  return { isLoaded, error, list };
+  return { isLoaded, error, data };
 }
