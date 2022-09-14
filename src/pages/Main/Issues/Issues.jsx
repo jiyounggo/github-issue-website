@@ -8,6 +8,8 @@ import {
   Anchor,
   Banner,
 } from './Issues.style';
+import { Link } from 'react-router-dom';
+// import { ROUTE } from '../../../common/utils/constant';
 
 const Issues = ({ data: list }) => {
   return (
@@ -29,17 +31,19 @@ const Issues = ({ data: list }) => {
           );
         }
         return (
-          <Li key={issue.id}>
-            <IssueContainer>
-              <IssueTitle>
-                #{issue.number} {issue.title}
-              </IssueTitle>
-              <IssueSubContent>
-                작성자: {issue.user.login}, 작성일: {newDate}
-              </IssueSubContent>
-            </IssueContainer>
-            <Comment>코멘트:{issue.comments}</Comment>
-          </Li>
+          <Link to={`/${issue.number}`}>
+            <Li key={issue.id}>
+              <IssueContainer>
+                <IssueTitle>
+                  #{issue.number} {issue.title}
+                </IssueTitle>
+                <IssueSubContent>
+                  작성자: {issue.user.login}, 작성일: {newDate}
+                </IssueSubContent>
+              </IssueContainer>
+              <Comment>코멘트:{issue.comments}</Comment>
+            </Li>
+          </Link>
         );
       })}
     </ol>
