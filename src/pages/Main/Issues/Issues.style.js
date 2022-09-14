@@ -23,7 +23,6 @@ export const Image = styled.img`
 `;
 
 export const IssueContainer = styled.div`
-  flex: 0.7;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -62,7 +61,6 @@ export const Comment = styled.div`
   @media ${({ theme }) => theme.device.mobile} {
     font-size: 1rem;
   }
-  /* min-width: 5rem; */
 `;
 
 export const LoadingBox = styled.li`
@@ -72,6 +70,7 @@ export const LoadingBox = styled.li`
 `;
 
 export const SLink = styled(Link)`
+  flex: 0.7;
   text-decoration: none;
   color: #000;
 `;
