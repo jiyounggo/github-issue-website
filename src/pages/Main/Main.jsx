@@ -3,15 +3,14 @@ import { UserContext } from '../../context/UserList';
 import { Container } from './Main.style';
 
 function Main() {
-  const { load, issuesList, obsRef } = useContext(UserContext);
-
+  const { isLoaded, error, list, loader } = useContext(UserContext);
   return (
     <Container>
-      {issuesList?.map((issue, idx) => {
+      {list?.map((issue, idx) => {
         const date = issue.created_at;
         const newDate = date.split('T')[0];
         if (idx === 5) {
-          const se = (
+          return (
             <li>
               <a href="https://thingsflow.com/ko/home">
                 <img
@@ -22,7 +21,6 @@ function Main() {
               </a>
             </li>
           );
-          return se;
         }
         return (
           <li key={issue.id + idx}>
@@ -40,8 +38,9 @@ function Main() {
           </li>
         );
       })}
-      {load ? <div ref={obsRef}>로딩중</div> : ''}
-      <li className="" ref={obsRef}></li>
+      {isLoaded && <p>Loading...</p>}
+      {error && <p>Error!</p>}
+      <div ref={loader} />
     </Container>
   );
 }
