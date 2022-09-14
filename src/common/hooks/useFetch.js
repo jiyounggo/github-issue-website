@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 
-export default function useFetch(query, page) {
+export default function useFetch(page) {
   const [isLoaded, setIsLoad] = useState(true);
   const [error, setError] = useState(false);
   const [list, setList] = useState([]);
@@ -26,8 +26,8 @@ export default function useFetch(query, page) {
   }, [page]);
 
   useEffect(() => {
-    sendQuery(query);
-  }, [query, sendQuery, page]);
+    sendQuery();
+  }, [sendQuery, page]);
 
   return { isLoaded, error, list };
 }

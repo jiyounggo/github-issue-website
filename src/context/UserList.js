@@ -4,9 +4,8 @@ import useFetch from '../common/hooks/useFetch';
 export const UserContext = createContext(null);
 
 function UserList(props) {
-  const [query, setQuery] = useState('');
   const [page, setPage] = useState(1);
-  const { isLoaded, error, list } = useFetch(query, page);
+  const { isLoaded, error, list } = useFetch(page);
   const loader = useRef(null);
 
   const handleObserver = useCallback(entries => {
@@ -27,7 +26,7 @@ function UserList(props) {
   }, [handleObserver]);
 
   return (
-    <UserContext.Provider value={{ isLoaded, error, list, loader, setQuery }}>
+    <UserContext.Provider value={{ isLoaded, error, list, loader }}>
       {props.children}
     </UserContext.Provider>
   );
