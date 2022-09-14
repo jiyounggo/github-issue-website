@@ -1,16 +1,18 @@
 import { Route, Routes } from 'react-router-dom';
 import { ROUTE } from './common/utils/constant';
-import Detail from './pages/Detail/Detail';
-import Main from './pages/Main/Main';
+import IssueDetail from './pages/IssueDetail/IssueDetail';
+// import IssueList from './pages/IssueList/IssueList';
 import NotFound from './pages/NotFound/NotFound';
-import { UserList } from './context/UserList';
+import UserList from './context/UserList';
+import Main from './pages/Main/Main';
 
 function App() {
   return (
     <UserList>
       <Routes>
+        {/* <Route path={ROUTE.MAIN} element={<IssueList />} /> */}
+        <Route path={ROUTE.DETAIL_ISSUE} element={<IssueDetail />} />
         <Route path={ROUTE.MAIN} element={<Main />} />
-        <Route path={ROUTE.DETAIL_ID} element={<Detail />} />
         <Route path={ROUTE.NOT_FOUND} element={<NotFound />} />
       </Routes>
     </UserList>
