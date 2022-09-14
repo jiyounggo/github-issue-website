@@ -19,6 +19,7 @@ const getIssues = async () => {
 
 const getIssue = async issueNumber => {
   const response = await api.get(`/${issueNumber}`);
+
   return response.data;
 };
 

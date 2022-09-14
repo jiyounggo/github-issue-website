@@ -1,5 +1,5 @@
-import React, { useReducer, useMemo, useEffect, createContext, useContext } from 'react';
-import { getIssues } from '../api/api';
+import React, { useMemo, useReducer, useEffect, createContext, useContext } from 'react';
+import { getIssue, getIssues } from '../api/api';
 
 function reducer(state, action) {
   switch (action.type) {
@@ -7,18 +7,21 @@ function reducer(state, action) {
       return {
         loading: true,
         data: null,
+        detail: null,
         error: null,
       };
     case 'SUCCESS':
       return {
         loading: false,
         data: action.data,
+        detail: action.detail,
         error: null,
       };
     case 'ERROR':
       return {
         loading: false,
         data: null,
+        detail: null,
         error: action.error,
       };
     default:
@@ -27,15 +30,17 @@ function reducer(state, action) {
 }
 
 const IssueStateContext = createContext(null);
+const IssueDispatchContext = createContext(null);
 
 const IssueProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, {
     loading: false,
     data: null,
+    detail: null,
     error: null,
   });
 
-  const fetchUsers = async () => {
+  const fetchIssues = async () => {
     dispatch({ type: 'LOADING' });
     try {
       const data = await getIssues();
@@ -46,13 +51,13 @@ const IssueProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    fetchUsers();
+    fetchIssues();
     console.info('IssueProvider!!');
   }, []);
 
-  const { loading, data, error } = state;
+  const { loading, data, detail, error } = state;
 
-  const value = useMemo(() => ({ loading, data, error }), [loading, data, error]);
+  const value = useMemo(() => ({ loading, data, detail, error }), [loading, data, detail, error]);
   //자식컴포넌트로 보내줄것을 useMemo로 묶어서  적어준 뒤 전달하는것이 contextAPI쓸때 성능저하가 덜 일어난다.
 
   if (loading) return <div>로딩중....</div>;
@@ -63,7 +68,9 @@ const IssueProvider = ({ children }) => {
 
   return (
     <IssueStateContext.Provider value={value}>
-      <ul>{children}</ul>
+      <IssueDispatchContext.Provider value={dispatch}>
+        <ul>{children}</ul>
+      </IssueDispatchContext.Provider>
     </IssueStateContext.Provider>
   );
 };
@@ -72,4 +79,19 @@ export default IssueProvider;
 
 export function useIssueState() {
   return useContext(IssueStateContext);
+}
+
+export function useIssueDispatch() {
+  return useContext(IssueDispatchContext);
+}
+
+export async function fetchIssueDetail(dispatch, number) {
+  dispatch({ type: 'LOADING' });
+  try {
+    const detail = await getIssue(number);
+    dispatch({ type: 'SUCCESS', detail });
+    console.info('try here', detail);
+  } catch (e) {
+    dispatch({ type: 'ERROR', error: e });
+  }
 }
