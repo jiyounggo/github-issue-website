@@ -7,9 +7,8 @@ import {
   Image,
   Anchor,
   Banner,
+  SLink,
 } from './Issues.style';
-import { Link } from 'react-router-dom';
-// import { ROUTE } from '../../../common/utils/constant';
 
 const Issues = ({ data: list }) => {
   return (
@@ -31,8 +30,8 @@ const Issues = ({ data: list }) => {
           );
         }
         return (
-          <Link to={`/${issue.number}`}>
-            <Li key={issue.id}>
+          <Li key={issue.id}>
+            <SLink to={`/${issue.number}`}>
               <IssueContainer>
                 <IssueTitle>
                   #{issue.number} {issue.title}
@@ -41,9 +40,9 @@ const Issues = ({ data: list }) => {
                   작성자: {issue.user.login}, 작성일: {newDate}
                 </IssueSubContent>
               </IssueContainer>
-              <Comment>코멘트:{issue.comments}</Comment>
-            </Li>
-          </Link>
+            </SLink>
+            <Comment>코멘트:{issue.comments}</Comment>
+          </Li>
         );
       })}
     </ol>

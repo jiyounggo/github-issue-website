@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Li = styled.li`
   height: 7rem;
@@ -68,4 +69,9 @@ export const LoadingBox = styled.li`
   background-color: beige;
   height: 6rem;
   margin-bottom: 1rem;
+`;
+
+export const SLink = styled(Link)`
+  text-decoration: none;
+  color: #000;
 `;
