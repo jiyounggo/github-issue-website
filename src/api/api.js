@@ -10,8 +10,10 @@ const api = axios.create({
   headers: { Accept: 'application/vnd.github+json', Authorization: `Bearer ${GH_TOKEN}` },
 });
 
-const getListByIssues = async query => {
-  const response = await api.get(``, { params: { page: query } });
+const getListByIssues = async (state, sort, page) => {
+  const response = await api.get(`issues`, {
+    params: { state: state, sort: sort, page: page },
+  });
   return response;
 };
 

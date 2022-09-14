@@ -10,7 +10,7 @@ export default function useFetch(page) {
     try {
       setIsLoad(true);
       setError(false);
-      const res = await getListByIssues(`${page}`);
+      const res = await getListByIssues('open', 'comments', `${page}`);
       setList(prev => [...prev, ...res.data]);
       setIsLoad(false);
     } catch (err) {
