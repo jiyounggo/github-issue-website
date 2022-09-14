@@ -4,9 +4,9 @@ import { Api, ApiWithInfiniteScroll } from '../api/IssueApi';
 
 const UserContext = createContext(null);
 
-export const useUser = () => useContext(UserContext);
+export const useAPIContext = () => useContext(UserContext);
 
-export const UserList = ({ children }) => {
+export const APIContext = ({ children }) => {
   const IssuesAPI = ({ renderSuccess }) => (
     <>
       <ApiWithInfiniteScroll

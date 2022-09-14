@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Li = styled.li`
   height: 7rem;
@@ -22,7 +23,6 @@ export const Image = styled.img`
 `;
 
 export const IssueContainer = styled.div`
-  flex: 0.7;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -61,11 +61,16 @@ export const Comment = styled.div`
   @media ${({ theme }) => theme.device.mobile} {
     font-size: 1rem;
   }
-  /* min-width: 5rem; */
 `;
 
 export const LoadingBox = styled.li`
   background-color: beige;
   height: 6rem;
   margin-bottom: 1rem;
+`;
+
+export const SLink = styled(Link)`
+  flex: 0.7;
+  text-decoration: none;
+  color: #000;
 `;

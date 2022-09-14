@@ -7,6 +7,7 @@ import {
   Image,
   Anchor,
   Banner,
+  SLink,
 } from './Issues.style';
 
 const Issues = ({ data: list }) => {
@@ -30,14 +31,16 @@ const Issues = ({ data: list }) => {
         }
         return (
           <Li key={issue.id}>
-            <IssueContainer>
-              <IssueTitle>
-                #{issue.number} {issue.title}
-              </IssueTitle>
-              <IssueSubContent>
-                작성자: {issue.user.login}, 작성일: {newDate}
-              </IssueSubContent>
-            </IssueContainer>
+            <SLink to={`/${issue.number}`}>
+              <IssueContainer>
+                <IssueTitle>
+                  #{issue.number} {issue.title}
+                </IssueTitle>
+                <IssueSubContent>
+                  작성자: {issue.user.login}, 작성일: {newDate}
+                </IssueSubContent>
+              </IssueContainer>
+            </SLink>
             <Comment>코멘트:{issue.comments}</Comment>
           </Li>
         );
