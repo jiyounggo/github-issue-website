@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import useFetch from '../common/hooks/useFetch';
+import Loading from '../components/Loading/Loading';
 
 // TODO changseok loadingFallback과 renderError에 대한 컴포넌트 구현이 완료되면 수정 예정
 export const Api = ({
   getData,
   renderSuccess,
-  loadingFallback = <p>loading...</p>,
+  loadingFallback = <Loading />,
   renderError = error => <p>Error!</p>,
 }) => {
   const api = useCallback(() => getData(), []);
@@ -20,7 +21,7 @@ export const Api = ({
 export const ApiWithInfiniteScroll = ({
   getList,
   renderSuccess,
-  loadingFallback = <p>loading...</p>,
+  loadingFallback = <Loading />,
   renderError = error => <p>Error!</p>,
 }) => {
   const [page, setPage] = useState(1);
