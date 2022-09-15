@@ -18,7 +18,7 @@ export const Anchor = styled.a`
 `;
 
 export const Image = styled.img`
-  height: 6rem;
+  width: 6rem;
   margin-right: 1rem;
 `;
 

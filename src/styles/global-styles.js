@@ -126,4 +126,7 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+img {
+  width: 100%;
+}
 `;
