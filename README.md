@@ -15,7 +15,7 @@
 
 - [배포 링크](https://wanted07-github-issue.netlify.app/)
 
-- [데모 영상](https://drive.google.com/file/d/11m0KSgnombt-PZzNcrosRboGupZInQbw/view?usp=sharing)
+- [데모 영상](https://drive.google.com/file/d/149RSeV9gSgwkZlRS9iBtaYkOx5yxHjP5/view?usp=sharing)
 
 <br/>
 
