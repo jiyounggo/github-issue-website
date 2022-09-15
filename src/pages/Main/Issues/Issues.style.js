@@ -29,7 +29,7 @@ export const IssueContainer = styled.div`
 `;
 
 export const IssueTitle = styled.h2`
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   line-height: 1.8rem;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -38,7 +38,7 @@ export const IssueTitle = styled.h2`
   -webkit-box-orient: vertical;
   cursor: pointer;
   @media ${({ theme }) => theme.device.mobile} {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
 `;
 
@@ -48,18 +48,18 @@ export const IssueSubContent = styled.div`
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
-  font-size: 0.8rem;
+  font-size: 1rem;
   @media ${({ theme }) => theme.device.mobile} {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
 `;
 
 export const Comment = styled.div`
   flex: 0.3;
   text-align: end;
-  font-size: 0.8rem;
+  font-size: 1rem;
   @media ${({ theme }) => theme.device.mobile} {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
 `;
 
