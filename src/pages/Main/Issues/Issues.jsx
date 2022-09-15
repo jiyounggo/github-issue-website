@@ -16,7 +16,7 @@ const Issues = ({ data: list }) => {
       {list?.map((issue, idx) => {
         const date = issue.created_at;
         const newDate = date.split('T')[0];
-        if (idx === 5) {
+        if (idx === 4) {
           return (
             <Anchor href="https://thingsflow.com/ko/home" key={'banner'}>
               <Banner>
