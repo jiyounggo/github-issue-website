@@ -53,7 +53,7 @@ $ git clone https://github.com/pre-on-boarding-fe-7team/week3-1-github-issue-web
 
 /* step 2 */
 
-  .env.sample ( Sample )을 적용하여 API 연동한다.
+  .env.sample을 적용하여 API 연동한다.
   
 
 /* step 3 */
