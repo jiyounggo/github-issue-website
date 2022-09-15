@@ -2,7 +2,6 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import useFetch from '../common/hooks/useFetch';
 import Loading from '../components/Loading/Loading';
 
-// TODO changseok loadingFallback과 renderError에 대한 컴포넌트 구현이 완료되면 수정 예정
 export const Api = ({
   getData,
   renderSuccess,
@@ -17,7 +16,6 @@ export const Api = ({
   if (data) return renderSuccess({ data });
 };
 
-// TODO changseok loadingFallback과 renderError에 대한 컴포넌트 구현이 완료되면 수정 예정
 export const ApiWithInfiniteScroll = ({
   getList,
   renderSuccess,
