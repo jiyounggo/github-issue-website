@@ -9,9 +9,13 @@
 
 <br/>
 
-## 데모 영상
 
-- [https://drive.google.com/file/d/1IhR215X86wsIY4MeWyDmsb4G2n3OgKSa/view?usp=sharing](https://drive.google.com/file/d/11m0KSgnombt-PZzNcrosRboGupZInQbw/view?usp=sharing)
+
+## 배포 링크 및 데모 영상
+
+- [배포 링크](https://wanted07-github-issue.netlify.app/)
+
+- [데모 영상](https://drive.google.com/file/d/11m0KSgnombt-PZzNcrosRboGupZInQbw/view?usp=sharing)
 
 <br/>
 
@@ -49,7 +53,7 @@ $ git clone https://github.com/pre-on-boarding-fe-7team/week3-1-github-issue-web
 
 /* step 2 */
 
-  위의 .env ( Sample )을 적용하여 API 연동한다.
+  .env.sample ( Sample )을 적용하여 API 연동한다.
   
 
 /* step 3 */
