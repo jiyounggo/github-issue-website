@@ -55,7 +55,7 @@ export const IssueSubContent = styled.div`
 `;
 
 export const Comment = styled.div`
-  flex: 0.15;
+  flex: 0.3;
   text-align: end;
   font-size: 0.8rem;
   @media ${({ theme }) => theme.device.mobile} {
