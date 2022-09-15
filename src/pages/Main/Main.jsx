@@ -1,8 +1,18 @@
 import React from 'react';
-import { Container } from './Main.style';
+import { useAPIContext } from '../../context/APIContext';
+import Issues from './Issues/Issues';
+import { Container, MainContainer } from './Main.style';
 
 function Main() {
-  return <Container>This is MainPage</Container>;
+  const { IssuesAPI } = useAPIContext();
+
+  return (
+    <Container>
+      <MainContainer>
+        <IssuesAPI renderSuccess={Issues} />
+      </MainContainer>
+    </Container>
+  );
 }
 
 export default Main;

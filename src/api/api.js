@@ -1,14 +1,24 @@
-const baseUrl = process.env.REACT_APP_SERVER_URL;
+import axios from 'axios';
 
-const get = async endpoint => {
-  const url = baseUrl + endpoint;
-  const res = await fetch(url);
-  if (!res.ok) {
-    throw new Error(`${res.status.toString()} Error 인한 요청 실패!`);
-  }
-  const result = await res.json();
+const API_URL = `${process.env.REACT_APP_API_URL}`;
+const OWNER = `${process.env.REACT_APP_OWNER}`;
+const REPO = `${process.env.REACT_APP_REPO}`;
 
-  return result;
+const api = axios.create({
+  baseURL: `${API_URL}/${OWNER}/${REPO}`,
+  headers: { Accept: 'application/vnd.github+json' },
+});
+
+const getListByIssues = async (state, sort, page) => {
+  const response = await api.get(`issues`, {
+    params: { state: state, sort: sort, page: page },
+  });
+  return response;
 };
 
-export { get };
+const getIssue = async id => {
+  const response = await api.get(`issues/${id}`);
+  return response;
+};
+
+export { getListByIssues, getIssue };

@@ -60,7 +60,8 @@ const theme = {
   maxWidth: '1100px',
   device: {
     pc: '(min-width: 1100px)',
-    mobile: '(min-width: 768px)',
+    tablet: '(min-width: 768px)',
+    mobile: '(max-width: 674px)',
   },
   common,
   fontSizes,
